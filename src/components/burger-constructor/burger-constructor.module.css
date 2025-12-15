@@ -5,3 +5,34 @@
   padding-bottom: 20px;
   color: var(--text-primary-color);
 }
+
+.list {
+  overflow-y: scroll;
+  height: calc(100vh - 196px - 88px - 292px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px 0;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0 8px;
+}
+
+.dragButton {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  cursor: grab;
+}
+
+.resultPrice {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 0 40px;
+}

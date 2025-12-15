@@ -1,0 +1,21 @@
+.ingredients {
+  margin-top: 40px;
+}
+
+.list {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 32px 5px;
+}
+
+.item {
+  max-width: 272px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}

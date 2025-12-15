@@ -1,0 +1,19 @@
+.image {
+  padding: 0;
+  max-width: 240px;
+  width: 100%;
+}
+
+.price {
+  display: flex;
+  gap: 0 10px;
+  justify-content: center;
+}
+
+.priceCount {
+  margin: 0;
+}
+
+.name {
+  text-align: center;
+}
