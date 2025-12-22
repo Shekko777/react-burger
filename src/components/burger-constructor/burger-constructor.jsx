@@ -7,24 +7,11 @@ import {
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import { ConstructorModal } from './components/constructor-modal/constructor-modal';
+import { ingredientPropTypes } from '../../utils/types';
+import { Modal } from '../modal/modal';
+import { OrderDetails } from './components/order-details/order-details';
 
 import styles from './burger-constructor.module.css';
-
-const constructorPropTypes = PropTypes.shape({
-  _id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  proteins: PropTypes.number.isRequired,
-  fat: PropTypes.number.isRequired,
-  carbohydrates: PropTypes.number.isRequired,
-  calories: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  image_mobile: PropTypes.string.isRequired,
-  image_large: PropTypes.string.isRequired,
-  __v: PropTypes.number.isRequired,
-});
 
 const BurgerConstructor = ({ ingredients }) => {
   const [modal, setModal] = useState(false);
@@ -44,7 +31,7 @@ const BurgerConstructor = ({ ingredients }) => {
           <ConstructorElement
             type="top"
             isLocked={true}
-            text={ingredients.find((el) => el.type === 'bun')?.name}
+            text={ingredients.find((el) => el.type === 'bun')?.name + ' (верх)'}
             price={ingredients.find((el) => el.type === 'bun')?.price}
             thumbnail={ingredients.find((el) => el.type === 'bun')?.image}
           />
@@ -69,7 +56,7 @@ const BurgerConstructor = ({ ingredients }) => {
           <ConstructorElement
             type="bottom"
             isLocked={true}
-            text={ingredients.find((el) => el.type === 'bun')?.name}
+            text={ingredients.find((el) => el.type === 'bun')?.name + ' (низ)'}
             price={ingredients.find((el) => el.type === 'bun')?.price}
             thumbnail={ingredients.find((el) => el.type === 'bun')?.image}
           />
@@ -82,13 +69,17 @@ const BurgerConstructor = ({ ingredients }) => {
         </Button>
       </div>
 
-      {modal && <ConstructorModal onClose={handleCloseModal} title="" />}
+      {modal && (
+        <Modal onClose={handleCloseModal} title="">
+          <OrderDetails />
+        </Modal>
+      )}
     </section>
   );
 };
 
 BurgerConstructor.propTypes = {
-  ingredients: PropTypes.arrayOf(constructorPropTypes).isRequired,
+  ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired,
 };
 
 export { BurgerConstructor };

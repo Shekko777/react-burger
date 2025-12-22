@@ -4,12 +4,6 @@ import { useEffect } from 'react';
 import styles from './modal-overlay.module.css';
 
 const ModalOverlay = ({ onClose, children }) => {
-  const handleEscape = (evt) => {
-    if (evt.key === 'Escape') {
-      onClose();
-    }
-  };
-
   const handleOverlay = (evt) => {
     if (evt.target === evt.currentTarget) {
       onClose();
@@ -17,10 +11,16 @@ const ModalOverlay = ({ onClose, children }) => {
   };
 
   useEffect(() => {
-    document.querySelector('body').addEventListener('keydown', handleEscape);
+    const handleEscape = (evt) => {
+      if (evt.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.body.addEventListener('keydown', handleEscape);
 
     return () => {
-      document.querySelector('body').removeEventListener('keydown', handleEscape);
+      document.body.removeEventListener('keydown', handleEscape);
     };
   }, []);
 

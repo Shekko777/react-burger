@@ -1,25 +1,12 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
+import { ingredientPropTypes } from '../../../../utils/types';
+import { Modal } from '../../../modal/modal';
 import { Card } from '../card/card';
-import { IngredientsModal } from '../ingredients-modal/ingredients-modal';
+import { IngredientsDetails } from '../ingredients-details/ingredients-details';
 
 import styles from './Ingredients.module.css';
-
-const dataPropTypes = PropTypes.shape({
-  _id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  proteins: PropTypes.number.isRequired,
-  fat: PropTypes.number.isRequired,
-  carbohydrates: PropTypes.number.isRequired,
-  calories: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  image_mobile: PropTypes.string.isRequired,
-  image_large: PropTypes.string.isRequired,
-  __v: PropTypes.number.isRequired,
-});
 
 const Ingredients = ({ title, data }) => {
   const [modal, setModal] = useState(false);
@@ -43,7 +30,9 @@ const Ingredients = ({ title, data }) => {
         ))}
       </ul>
       {modal && (
-        <IngredientsModal ingredient={activeIngredient} onClose={handleCloseModal} />
+        <Modal onClose={handleCloseModal} title="Детали ингредиента">
+          <IngredientsDetails ingredient={activeIngredient} />
+        </Modal>
       )}
     </section>
   );
@@ -51,7 +40,7 @@ const Ingredients = ({ title, data }) => {
 
 Ingredients.propTypes = {
   title: PropTypes.string.isRequired,
-  data: PropTypes.arrayOf(dataPropTypes).isRequired,
+  data: PropTypes.arrayOf(ingredientPropTypes).isRequired,
 };
 
 export { Ingredients };

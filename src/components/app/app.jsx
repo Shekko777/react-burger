@@ -14,7 +14,13 @@ export const App = () => {
 
   useEffect(() => {
     fetch(URL)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка ${res.status}`);
+      })
       .then((res) => setData(res.data))
       .catch((err) => console.log(`Произошла ошибка: ${err}`));
   }, []);
