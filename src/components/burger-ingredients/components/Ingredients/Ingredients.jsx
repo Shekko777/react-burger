@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-import { Card } from '../Card/Card';
+import { Card } from '../card/card';
+import { IngredientsModal } from '../ingredients-modal/ingredients-modal';
 
 import styles from './Ingredients.module.css';
 
@@ -20,16 +22,29 @@ const dataPropTypes = PropTypes.shape({
 });
 
 const Ingredients = ({ title, data }) => {
+  const [modal, setModal] = useState(false);
+  const [activeIngredient, setActiveIngredient] = useState(null);
+
+  const handleOpenModal = (ingredient) => {
+    setModal(true);
+    setActiveIngredient(ingredient);
+  };
+
+  const handleCloseModal = () => {
+    setModal(false);
+  };
+
   return (
     <section className={`mt-10 ${styles.ingredients}`}>
       <h2 className="text text_type_main-large">{title}</h2>
       <ul className={`ml-4 mr-4 ${styles.list}`}>
-        {data.map((el, index) => (
-          <li className={`${styles.item}`} key={index}>
-            <Card image={el.image} price={el.price} name={el.name} count={5} />
-          </li>
+        {data.map((el) => (
+          <Card key={el._id} el={el} count={1} handleClick={() => handleOpenModal(el)} />
         ))}
       </ul>
+      {modal && (
+        <IngredientsModal ingredient={activeIngredient} onClose={handleCloseModal} />
+      )}
     </section>
   );
 };

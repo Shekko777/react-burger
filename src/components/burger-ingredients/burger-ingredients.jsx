@@ -1,7 +1,7 @@
 import { Tab } from '@krgaa/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 
-import { Ingredients } from './components/Ingredients/Ingredients';
+import { Ingredients } from './components/ingredients/Ingredients';
 
 import styles from './burger-ingredients.module.css';
 
