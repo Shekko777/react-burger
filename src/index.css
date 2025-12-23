@@ -7,7 +7,7 @@ body {
 @supports (scrollbar-color: auto) {
   .custom-scroll {
     scrollbar-color: #8585ad #2f2f37;
-    scrollbar-width: thin;
+    scrollbar-width: 8px;
   }
 
   body {

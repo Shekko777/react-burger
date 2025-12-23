@@ -1,0 +1,12 @@
+.ingredients {
+  margin-top: 40px;
+}
+
+.list {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 32px 5px;
+}
